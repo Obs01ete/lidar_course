@@ -4,7 +4,7 @@ By Dmitrii Khizbullin
 ## 1. Obtain a machine
 
 ### (A) Local machine
-Get Ubuntu Desktop host OS version 18.04+. NVidia or AMD GPU with OpenGL support is highly recommended.
+Ubuntu Desktop version 18.04+ and Windows 10 host OS are supported. NVidia or AMD GPU with OpenGL support is highly recommended.
 
 ### (B) Create an AWS EC2 instance
 
@@ -20,14 +20,14 @@ Select "Ubuntu Server 18.04 LTS (HVM), SSD Volume Type" image. Choose "g4dn.2xla
 cd /home/ubuntu
 mkdir git
 cd git
-git clone https://github.com/Obs01ete/lidar_course_setup.git
+git clone https://github.com/Obs01ete/lidar_course.git
 ```
 ```
 cd /home/ubuntu
 mkdir kitti
 cd kitti
 # optionally run a TMUX session.
-bash /home/ubuntu/git/lidar_course_setup/download_data.sh
+bash /home/ubuntu/git/lidar_course/setup/download_data.sh
 ```
 Download may take 40 minutes. Meanwhile the docker image can be built.
 
@@ -36,42 +36,42 @@ Unpack downloaded zip archives:
 unzip 'data_tracking_*.zip' -d tracking/
 ```
 
-## 3. Clone sources of this course
-```
-cd /home/ubuntu
-cd git
-# The repo below will be available soon
-git clone https://github.com/Obs01ete/lidar_course.git
-```
-
-## 4. Create docker image
+## 3. Create docker image
 
 ### Install docker if not installed
+1. For Ubuntu
 https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-18-04
+2. For Windows 10
+https://docs.microsoft.com/en-us/virtualization/windowscontainers/quick-start/quick-start-windows-10-linux
 
 ### (A) Download the image from Dockerhub
 
-Pre-built container (1.3GB):
+Pre-built container (1.3GB), checked for Ubuntu and Windows:
 ```
 docker pull dmitriikhizbullin/lidar_course:latest
 ```
 
-### (B) Build the image from scratch
+### (B) Build the image from scratch (Ubuntu only)
 
 ```
-docker build --tag dmitriikhizbullin/lidar_course:local /home/ubuntu/git/lidar_course_setup
+docker build --tag dmitriikhizbullin/lidar_course:local /home/ubuntu/git/lidar_course/setup
 ```
 The process may take up to 30 minutes to build and takes up to 32 GB RAM. If the build fails due to out-of-memory while compiling PCL, reduce `-j8` to `-j4` in Dockerfile.
 
-Once done, launch the container.
+Once done, launch the container. Below are instructions for a Dockerhub container.
+1. Ubuntu:
 ```
-docker run -p 6080:80 -v /dev/shm:/dev/shm -v /home/ubuntu/git:/ws -v /home/ubuntu/kitti/:/kitti -e RESOLUTION=1600x900 dmitriikhizbullin/lidar_course:local
+docker run -p 6080:80 -v /dev/shm:/dev/shm -v /home/ubuntu/git:/ws -v /home/ubuntu/kitti/:/kitti -e RESOLUTION=1600x900 dmitriikhizbullin/lidar_course:latest
+```
+Windows, in Power Shell:
+```
+docker run -p 6080:80 -v ${PWD}/git:/ws -v ${PWD}/kitti/:/kitti -e RESOLUTION=1600x900 dmitriikhizbullin/lidar_course:latest
 ```
 Open noVNC session in the browser `http://<your_aws_machine_dns>:6080`. Examples:
 1. http://localhost:6080/
 2. http://ec2-18-222-312-123.us-east-2.compute.amazonaws.com:6080/
 
-## 5. Build and run the code for point cloud processing
+## 4. Build and run the code for point cloud processing
 
 In noVNC in the browser:
 ```
