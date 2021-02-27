@@ -4,7 +4,7 @@ By Dmitrii Khizbullin
 ## 1. Obtain a machine
 
 ### (A) Local machine
-Ubuntu Desktop version 18.04+ and Windows 10 host OS are supported. NVidia or AMD GPU with OpenGL support is highly recommended.
+Ubuntu Desktop version 18.04+ and Windows 10 host OS are supported. NVidia or AMD GPU with OpenGL support is highly recommended. The prebuilt Dockerhub image requires a CPU with AVX2 support.
 
 ### (B) Create an AWS EC2 instance
 
