@@ -160,7 +160,7 @@ auto remove_ground_ransac(
         // Here we figure out the normal to the plane which can be easily calculated
         // as a normalized cross product.
         auto vb = pb - pa;
-        auto vc = pb - pc;
+        auto vc = pc - pa;
         Eigen::Vector3f normal = vb.cross(vc).normalized();
 
         // Flip the normal if points down
