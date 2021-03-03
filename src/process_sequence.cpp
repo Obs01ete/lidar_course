@@ -49,15 +49,13 @@ int main(int argc, char ** argv)
 
     // The first argument is a path to training/testing subfolder of
     // the Kitti tracking dataset.
-    // The second argument is a name of the sequence whick is 4 digits.
+    // The second argument is a name of the sequence which is 4 digits.
 
     if (argc < 3)
     {
         pcl::console::print_info(
 \
         "\n\
--- pcl::CPCSegmentation example -- :\n\
-\n\
 Syntax: %s /data/kitti/tracking/training/ 0000\n\
 \n\
 ",
