@@ -15,7 +15,13 @@ Select "Ubuntu Server 18.04 LTS (HVM), SSD Volume Type" image. Choose "g4dn.2xla
 
 ## 2. Download and unpack Kitti tracking data
 
-106 GB free space required. Download:
+### (A) Preview dataset
+Download Tracking Mini dataset containing sequences 0 and 3 of Kitti Tracking (600MB download, 1.5BG free space on disk required):
+
+[Download tracking mini dataset](https://drive.google.com/file/d/193DKNlfNX3h3A2u4E1Jg-Y40Xv13MpsD/view?usp=sharing)
+
+### (B) Full dataset
+Download the full Kitti tracking dataset (53GB download, 106 GB free space required):
 ```
 cd /home/ubuntu
 mkdir git
