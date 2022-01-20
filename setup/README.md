@@ -73,7 +73,7 @@ Windows, in Power Shell:
 ```
 docker run -p 6080:80 -v ${PWD}/git:/ws -v ${PWD}/kitti/:/kitti -e RESOLUTION=1600x900 dmitriikhizbullin/lidar_course:latest
 ```
-Open noVNC session in the browser `http://<your_aws_machine_dns>:6080`. Examples:
+Open noVNC session in the browser `http://<your_aws_machine_url>:6080`. Examples:
 1. http://localhost:6080/
 2. http://ec2-18-222-312-123.us-east-2.compute.amazonaws.com:6080/
 
