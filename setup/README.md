@@ -94,3 +94,5 @@ Run the application:
 ```
 
 You should see an Ubuntu Desktop GUI window in noVNC browser tab. There should be an animated colored point cloud with buildings, trees, cars, cyclists and pedestrians.
+
+![](assets/vnc.png)
