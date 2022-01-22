@@ -43,7 +43,7 @@
 
 // This is the main application to process a Kitti tracking sequence
 // as a whole and render processing results in a GUI window.
-int main(int argc, char ** argv)
+int main(int argc, char** argv)
 {
     using namespace lidar_course;
 
@@ -54,12 +54,8 @@ int main(int argc, char ** argv)
     if (argc < 3)
     {
         pcl::console::print_info(
-\
-        "\n\
-Syntax: %s /data/kitti/tracking/training/ 0000\n\
-\n\
-",
-        argv[0]);
+            "\nSyntax: %s /data/kitti/tracking/training/ 0000\n\n",
+            argv[0]);
         return EXIT_FAILURE;
     }
 
@@ -125,7 +121,8 @@ Syntax: %s /data/kitti/tracking/training/ 0000\n\
     Visualizer cloud_viewer(processor_params);
 
     // We are going to render images in a separate window.
-    auto image_viewer = std::make_shared<pcl::visualization::ImageViewer>("Front camera view");
+    auto image_viewer =
+        std::make_shared<pcl::visualization::ImageViewer>("Front camera view");
 
     // This is the loop for repeatitive processing of the same sequence.
     // Once the sequence is done being processed, the cycle starts over again.
@@ -140,7 +137,7 @@ Syntax: %s /data/kitti/tracking/training/ 0000\n\
         CloudAndClusterHulls cloud_and_clusters{};
         std::unique_ptr<Image> p_image;
         
-        // In this loop the fromes are processed and visualized one by one 
+        // In this loop the frames are processed and visualized one by one
         while (true)
         {
             auto start_time = std::chrono::system_clock::now();
@@ -191,7 +188,8 @@ Syntax: %s /data/kitti/tracking/training/ 0000\n\
             // (if the imame is successfully loaded)
             if (p_image)
             {
-                image_viewer->addRGBImage(p_image->ptr(), p_image->width(), p_image->height());
+                image_viewer->addRGBImage(p_image->ptr(),
+                    p_image->width(), p_image->height());
                 image_viewer->spinOnce();
             }
 

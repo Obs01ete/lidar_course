@@ -37,17 +37,36 @@ namespace lidar_course {
 
 class Image
 {
-    cil::CImg<unsigned char> m_image;
+    cil::CImg<unsigned char> m_image; // planar
+    std::vector<unsigned char> m_transposed; // rgb
 
 public:
     Image(std::string path) :
         m_image(path.c_str())
     {
+        const int h = m_image.height();
+        const int w = m_image.width();
+        const int c = 3;
+
+        m_transposed = std::vector<unsigned char>(h * w * c);
+
+        for (size_t row = 0; row < h; row++)
+        {
+            for (size_t col = 0; col < w; col++)
+            {
+                for (size_t channel = 0; channel < c; channel++)
+                {
+                    const auto pix = m_image.data(0, 0)[channel*h*w + row*w + col];
+
+                    m_transposed[row*w*c + col*c + channel] = pix;
+                }
+            }
+        }
     }
 
     const unsigned char* ptr()
     {
-        return m_image.data(0, 0);
+        return m_transposed.data();
     }
     
     int width()
