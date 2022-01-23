@@ -1,6 +1,6 @@
 # LiDAR Perception for ADAS and Autonomous Driving
 
-A course by Dmitrii Khizbullin, 2020.
+A course by Dmitrii Khizbullin, 2020-2022.
 
 See the docker setup instruction [here](setup/README.md).
 
