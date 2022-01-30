@@ -66,7 +66,7 @@ std::vector<size_t> find_inlier_indices(
     auto ransac_base_cloud_ptr = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     pcl::transformPointCloud(*input_cloud_ptr, *ransac_base_cloud_ptr, world_to_ransac_base);
 
-    // We are going to use a quaternion to determine the ratation transform
+    // We are going to use a quaternion to determine the rotation transform
     // which is required to rotate a coordinate system that plane's normal
     // becomes aligned with Z coordinate axis.
     auto rotate_to_plane_quat = Eigen::Quaternionf::FromTwoVectors(
@@ -81,7 +81,7 @@ std::vector<size_t> find_inlier_indices(
     auto aligned_cloud_ptr = std::make_shared<pcl::PointCloud<pcl::PointXYZ> >();
     pcl::transformPointCloud(*ransac_base_cloud_ptr, *aligned_cloud_ptr, ransac_base_to_ransac);
 
-    // Once the point cloud is transformed into the plae coordinates,
+    // Once the point cloud is transformed into the plane coordinates,
     // We can apply a simple criterion on Z coordinate to find inliers.
     std::vector<size_t> indices;
     for (size_t i_point = 0; i_point < aligned_cloud_ptr->size(); i_point++)
@@ -97,8 +97,8 @@ std::vector<size_t> find_inlier_indices(
 
 
 // This function performs plane detection with RANSAC sampling of planes
-// that lie on triplets of points randomply sampled from the cloud.
-// Among all trials the plane that is picked is the one that has he highest
+// that lie on triplets of points randomly sampled from the cloud.
+// Among all trials the plane that is picked is the one that has the highest
 // number of inliers. Inlier points are then removed as belonging to the ground.
 auto remove_ground_ransac(
     pcl::PointCloud<pcl::PointXYZ>::Ptr input_cloud_ptr)
@@ -129,7 +129,7 @@ auto remove_ground_ransac(
         if ((p.z > -rough_filter_thr) && (p.z < rough_filter_thr))
         {
             // Use random number generator to avoid introducing patterns
-            // (which are posssible with structured subsampling
+            // (which are possible with structured subsampling
             // like picking each Nth point).
             if (decimation_gen() == 0)
             {
