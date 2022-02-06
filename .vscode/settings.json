@@ -65,6 +65,10 @@
         "condition_variable": "cpp",
         "future": "cpp",
         "mutex": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "xhash": "cpp",
+        "xstring": "cpp",
+        "xtree": "cpp",
+        "xutility": "cpp"
     }
 }
