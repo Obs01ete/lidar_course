@@ -67,8 +67,8 @@ auto dbscan_segmentation(typename pcl::PointCloud<PointT>::Ptr input_cloud_ptr)
         std::cout << "tree " << d_milli << std::endl;
     }
 
-    float eps = 0.5f;
-    size_t minPts = 5;
+    float eps = 0.45f;
+    size_t minPts = 3;
 
     const size_t UNDEFINED = 0;
     const size_t NOISE = 1;
